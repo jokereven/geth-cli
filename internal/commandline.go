@@ -17,3 +17,17 @@ func CreateWallet() {
 
 	fmt.Println("新钱包地址为:", address)
 }
+
+func TocreateBlockChain(address string) {
+	if !isValidAddress(address) {
+		fmt.Println("传入地址无效，无效地址为:", address)
+		return
+	}
+
+	err := CreateBlockChain(address)
+	if err != nil {
+		fmt.Println("CreateBlockChain failed:", err)
+		return
+	}
+	fmt.Println("执行完毕!")
+}
