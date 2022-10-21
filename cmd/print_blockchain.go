@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"github.com/jokereven/geth-cli/internal"
 	"github.com/spf13/cobra"
 )
 
@@ -8,5 +9,7 @@ var printBlockChainCmd = &cobra.Command{
 	Use:   "print",
 	Short: "打印区块链",
 	Long:  "Print Block Chain",
-	Run:   func(cmd *cobra.Command, args []string) {},
+	Run: func(cmd *cobra.Command, args []string) {
+		internal.Print()
+	},
 }
