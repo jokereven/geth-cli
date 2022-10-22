@@ -1,6 +1,8 @@
 package internal
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func CreateWallet() {
 	wm := NewWalletManager()
@@ -139,14 +141,63 @@ func GetBalance(address string) {
 	fmt.Printf("'%s'的金额为:%f\n", address, total)
 }
 
-func AddBlock(data string) {
+func AddBlock(data []*Transaction) {
 	// TODO fix AddBlock
-	// fmt.Println("添加区块被调用!")
-	// bc, _ := GetBlockChainInstance()
-	// err := bc.AddBlock(data)
-	// if err != nil {
-	// 	fmt.Println("AddBlock failed:", err)
-	// 	return
-	// }
-	// fmt.Println("添加区块成功!")
+	fmt.Println("添加区块被调用!")
+	bc, _ := GetBlockChainInstance()
+	err := bc.AddBlock(data)
+	if err != nil {
+		fmt.Println("AddBlock failed:", err)
+		return
+	}
+	fmt.Println("添加区块成功!")
+}
+
+func Send(from, to string, amount float64, miner, data string) {
+	if !isValidAddress(from) {
+		fmt.Println("传入from无效，无效地址为:", from)
+		return
+	}
+
+	if !isValidAddress(to) {
+		fmt.Println("传入to无效，无效地址为:", to)
+		return
+	}
+
+	if !isValidAddress(miner) {
+		fmt.Println("传入miner无效，无效地址为:", miner)
+		return
+	}
+
+	bc, err := GetBlockChainInstance()
+
+	if err != nil {
+		fmt.Println("send err:", err)
+		return
+	}
+
+	defer bc.db.Close()
+
+	//创建挖矿交易
+	coinbaseTx := NewCoinbaseTx(miner, data)
+
+	//创建txs数组，将有效交易添加进来
+	txs := []*Transaction{coinbaseTx}
+
+	//创建普通交易
+	tx := NewTransaction(from, to, amount, bc)
+	if tx != nil {
+		fmt.Println("找到一笔有效的转账交易!")
+		txs = append(txs, tx)
+	} else {
+		fmt.Println("注意，找到一笔无效的转账交易, 不添加到区块!")
+	}
+
+	//调用AddBlock
+	err = bc.AddBlock(txs)
+	if err != nil {
+		fmt.Println("添加区块失败，转账失败!")
+	}
+
+	fmt.Println("添加区块成功，转账成功!")
 }
