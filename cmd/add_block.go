@@ -9,7 +9,7 @@ var data []*internal.Transaction
 
 var addBlockCmd = &cobra.Command{
 	Use:   "addBlock",
-	Short: "添加区块",
+	Short: "Add Block",
 	Long:  "To Add Block",
 	Run: func(cmd *cobra.Command, args []string) {
 		internal.AddBlock(data)

@@ -7,7 +7,7 @@ import (
 
 var listAddressCmd = &cobra.Command{
 	Use:   "listAddress",
-	Short: "列举所有的钱包地址",
+	Short: "List Address",
 	Long:  "List all Wallet Address",
 	Run: func(cmd *cobra.Command, args []string) {
 		internal.ListAddress()

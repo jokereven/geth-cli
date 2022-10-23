@@ -10,7 +10,7 @@ import (
 
 var createWalletCmd = &cobra.Command{
 	Use:   "createWallet",
-	Short: "创建钱包",
+	Short: "Create Wallet",
 	Long:  "Create One Wallet",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }

@@ -9,14 +9,14 @@ var address string
 
 var createBlockChainCmd = &cobra.Command{
 	Use:   "create",
-	Short: "创建区块链",
+	Short: "Create Block Chain",
 	Long:  "Create One new Block Chain",
 	Run:   func(cmd *cobra.Command, args []string) {},
 }
 
 var createBlockChainByAddressCmd = &cobra.Command{
 	Use:   "address",
-	Short: "创建区块链",
+	Short: "Create Block Chain",
 	Long:  "Create One new Block Chain",
 	Run: func(cmd *cobra.Command, args []string) {
 		internal.TocreateBlockChain(address)

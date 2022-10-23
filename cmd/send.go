@@ -13,7 +13,7 @@ var send_data string
 
 var sendCmd = &cobra.Command{
 	Use:   "send",
-	Short: "发送交易",
+	Short: "Send Deal",
 	Long:  "<FROM> <TO> <AMOUNT> <MINER> <DATA>",
 	Run: func(cmd *cobra.Command, args []string) {
 		internal.Send(from, to, amount, miner, send_data)

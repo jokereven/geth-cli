@@ -11,7 +11,7 @@ var GetBalaceAddress string
 
 var getBalaceCmd = &cobra.Command{
 	Use:   "getBalance",
-	Short: "获取余额",
+	Short: "Get Balace",
 	Long:  "To Get Balace",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Printf("value: %s, type: %T", GetBalaceAddress, GetBalaceAddress)
