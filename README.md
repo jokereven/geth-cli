@@ -1,5 +1,9 @@
 # geth-cli
 
+## reference
+https://github.com/dukedaily/go-bitcoin-demo
+https://github.com/go-programming-tour-book/tour
+
 #### 帮助
 
 ```
